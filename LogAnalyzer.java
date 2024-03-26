@@ -97,4 +97,23 @@ public class LogAnalyzer
         return quietestHour;
     }     
     
+    // Method to find the busiest two-hour period
+    public int busiestTwoHour()
+    {
+        int busiestTwo = 0;
+        int maxCount = 0;
+        
+        // Loop through each two-hour period
+        for (int hour = 0; hour < 24; hour++) {
+            int count = hourCounts[hour % 24] + 
+            hourCounts[(hour + 1) % 24];
+            if (count > maxCount) {
+                maxCount = count;
+                busiestTwo = hour % 24;
+            }
+        }
+        
+        return busiestTwo;
+    }    
+    
 }
