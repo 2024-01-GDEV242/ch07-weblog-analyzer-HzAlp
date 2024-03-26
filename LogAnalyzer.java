@@ -160,7 +160,24 @@ public class LogAnalyzer
         }
 
         return busiestDay;
-}
+    }
+
+    
+    /**
+     * Calculate the total accesses per month.
+     * @return An array containing the total accesses for each month.
+     */
+    public int[] totalAccessesPerMonth()
+    {
+        int[] monthCounts = new int[13]; // Array to store counts for each month (index 0 not used)
+        while(reader.hasNext()) {
+            LogEntry entry = reader.next();
+            int month = entry.getMonth();
+            monthCounts[month]++;
+        }
+
+        return monthCounts;
+    }
 
     
 }
