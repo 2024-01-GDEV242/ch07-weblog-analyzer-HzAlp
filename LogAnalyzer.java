@@ -62,4 +62,15 @@ public class LogAnalyzer
     {
         reader.printData();
     }
+    
+    // Method to calculate the total number of accesses
+    public int numberOfAccesses()
+    {
+        int total = 0;
+        for(int count : hourCounts) {
+            total += count;
+        }
+        return total;
+    }
+    
 }
