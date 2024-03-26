@@ -85,4 +85,16 @@ public class LogAnalyzer
         return busiestHour;
     }    
     
+    // Method to find the quietest hour
+    public int quietestHour()
+    {
+        int quietestHour = 0;
+        for (int hour = 1; hour < hourCounts.length; hour++) {
+            if (hourCounts[hour] < hourCounts[quietestHour]) {
+                quietestHour = hour;
+            }
+        }
+        return quietestHour;
+    }     
+    
 }
