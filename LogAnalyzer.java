@@ -179,5 +179,28 @@ public class LogAnalyzer
         return monthCounts;
     }
 
+    /**
+     * Find the quietest month.
+     * @return The quietest month (1-12).
+     */
+    public int quietestMonth()
+    {
+        int[] monthCounts = new int[13]; // Array to store counts for each month (index 0 not used)
+        while(reader.hasNext()) {
+            LogEntry entry = reader.next();
+            int month = entry.getMonth();
+            monthCounts[month]++;
+        }
+
+        int quietestMonth = 1; // Start with the assumption that January is the quietest
+        for (int month = 2; month < monthCounts.length; month++) {
+            if (monthCounts[month] < monthCounts[quietestMonth]) {
+                quietestMonth = month;
+            }
+        }
+
+        return quietestMonth;
+    }
+    
     
 }
