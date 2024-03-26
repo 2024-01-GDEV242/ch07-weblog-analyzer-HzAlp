@@ -1,8 +1,8 @@
 /**
  * Read web server data and analyse hourly access patterns.
  * 
- * @author David J. Barnes and Michael Kölling.
- * @version    2016.02.29
+ * @author Alper Hiz
+ * @version    3/25/2024
  */
 public class LogAnalyzer
 {
@@ -114,6 +114,30 @@ public class LogAnalyzer
         }
         
         return busiestTwo;
-    }    
+    }
+    
+    /**
+     * Find the quietest day.
+     * @return The quietest day.
+     */
+    public int quietestDay()
+    {
+        int[] dayCounts = new int[32]; // Array to store counts for each day (index 0 not used)
+        while(reader.hasNext()) {
+            LogEntry entry = reader.next();
+            int day = entry.getDay();
+            dayCounts[day]++;
+        }
+
+        int quietestDay = 1; // Start with the assumption that the first day is the quietest
+        for (int day = 2; day < dayCounts.length; day++) {
+            if (dayCounts[day] < dayCounts[quietestDay]) {
+                quietestDay = day;
+            }
+        }
+
+        return quietestDay;
+    }
+  
     
 }
