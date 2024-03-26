@@ -225,5 +225,42 @@ public class LogAnalyzer
         return busiestMonth;
     }
 
-    
+    /**
+     * Calculate the average accesses per month.
+     * @return An array containing the average accesses for each month.
+     */
+    public double[] averageAccessesPerMonth()
+    {
+        int[] monthCounts = new int[13]; // Array to store counts for each month (index 0 not used)
+        int[] totalAccesses = new int[13]; // Array to store total accesses for each month (index 0 not used)
+        while(reader.hasNext()) {
+            LogEntry entry = reader.next();
+            int month = entry.getMonth();
+            monthCounts[month]++;
+        }
+
+        // Calculate total accesses for each month
+        for (int i = 1; i < monthCounts.length; i++) {
+            totalAccesses[i] = monthCounts[i];
+        }
+
+        // Calculate the total number of months with data
+        int totalMonths = 0;
+        for (int count : monthCounts) {
+            if (count > 0) {
+                totalMonths++;
+            }
+        }
+
+        // Calculate the average accesses for each month
+        double[] averageAccesses = new double[13];
+        for (int i = 1; i < totalAccesses.length; i++) {
+            if (totalAccesses[i] > 0) {
+                averageAccesses[i] = (double) totalAccesses[i] / totalMonths;
+            }
+        }
+
+        return averageAccesses;
+    }
+
 }
