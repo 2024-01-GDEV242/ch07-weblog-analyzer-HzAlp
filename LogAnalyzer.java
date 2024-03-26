@@ -138,6 +138,29 @@ public class LogAnalyzer
 
         return quietestDay;
     }
-  
+    
+    /**
+     * Find the busiest day.
+     * @return The busiest day.
+     */
+    public int busiestDay()
+    {
+        int[] dayCounts = new int[32]; // Array to store counts for each day (index 0 not used)
+        while(reader.hasNext()) {
+            LogEntry entry = reader.next();
+            int day = entry.getDay();
+            dayCounts[day]++;
+        }
+
+        int busiestDay = 1; // Start with the assumption that the first day is the busiest
+        for (int day = 2; day < dayCounts.length; day++) {
+            if (dayCounts[day] > dayCounts[busiestDay]) {
+                busiestDay = day;
+            }
+        }
+
+        return busiestDay;
+}
+
     
 }
