@@ -201,6 +201,29 @@ public class LogAnalyzer
 
         return quietestMonth;
     }
-    
+
+    /**
+     * Find the busiest month.
+     * @return The busiest month (1-12).
+     */
+    public int busiestMonth()
+    {
+        int[] monthCounts = new int[13]; // Array to store counts for each month (index 0 not used)
+        while(reader.hasNext()) {
+            LogEntry entry = reader.next();
+            int month = entry.getMonth();
+            monthCounts[month]++;
+        }
+
+        int busiestMonth = 1; // Start with the assumption that January is the busiest
+        for (int month = 2; month < monthCounts.length; month++) {
+            if (monthCounts[month] > monthCounts[busiestMonth]) {
+                busiestMonth = month;
+            }
+        }
+
+        return busiestMonth;
+    }
+
     
 }
