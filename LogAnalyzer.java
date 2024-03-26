@@ -73,4 +73,16 @@ public class LogAnalyzer
         return total;
     }
     
+    // Method to find the busiest hour
+    public int busiestHour()
+    {
+        int busiestHour = 0;
+        for (int hour = 1; hour < hourCounts.length; hour++) {
+            if (hourCounts[hour] > hourCounts[busiestHour]) {
+                busiestHour = hour;
+            }
+        }
+        return busiestHour;
+    }    
+    
 }
